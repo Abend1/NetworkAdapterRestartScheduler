@@ -1,17 +1,19 @@
 # Workaround for Air-Gapped Lab System Issue
 
 ## Overview
-This repository contains a PowerShell script designed as a workaround for network issues encountered on air-gapped lab systems where Windows Server 2025 AD machines fail to set their filewall profile to domain. The solution does not depend on Group Policy or similar configurations, providing a simple and effective mechanism to ensure network adapters are appropriately managed in cases where domain authentication is required.
+Server 2025 Active Directory (AD) servers are prone to incorrectly setting the Windows Firewall to the domain profile. This script, designed to be copy-pasted into an elevated terminal window during the deployment of an AD server, creates a test-and-fix script and configures the machine's Task Scheduler to call this new script every minute. Its purpose is to restore the domain firewall profile by disabling and re-enabling the network interface card (NIC) if necessary.
+
+This solution operates independently of Group Policy or similar configurations, providing a simple and effective mechanism to manage network adapters in scenarios where domain authentication is required.
 
 ## Problem Statement
-Works on air-gapped systems, should work on Internet capable machines, maintaining network connectivity while ensuring domain authentication can be a persistent challenge. This script automates the process of monitoring network authentication status and restarts physical network adapters if they fail to authenticate with the domain.
+Maintaining network connectivity and ensuring domain authentication on air-gapped systems can be a persistent challenge. This script automates the process of monitoring the network authentication status and restarts physical network adapters if they fail to authenticate with the domain.
 
 ## Key Features
 - Writes a secondary PowerShell script to `C:\Windows`.
 - Sets up a Task Scheduler task to execute the script:
   - Initial delay of 30 seconds at startup.
   - Repeats every minute for 5 minutes.
-- Checks network category for `DomainAuthenticated` status.
+- Checks the network category for `DomainAuthenticated` status.
 - Restarts network adapters if the required domain authentication is not detected.
 
 ## Usage
