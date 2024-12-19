@@ -23,13 +23,8 @@ Maintaining network connectivity and ensuring domain authentication on air-gappe
 
 ### Steps to Implement
 1. Clone this repository or download the script file.
-2. Execute the provisioning script using an elevated PowerShell session.
-
-   ```powershell
-   .\ProvisionNetworkTask.ps1
-   ```
-
-3. The script will:
+2. Execute the provisioning script text by pasting into an elevated PowerShell session.
+3. The code will:
    - Create a secondary script at `C:\Windows\0-RestartPhysicalNetworkAdapters.ps1`.
    - Register a Task Scheduler instance to execute this script periodically.
 4. Verify that the Task Scheduler task is created and running as expected.
