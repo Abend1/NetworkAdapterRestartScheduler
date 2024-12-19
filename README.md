@@ -1,7 +1,7 @@
 # Workaround for Air-Gapped Lab System Issue
 
 ## Overview
-Server 2025 Active Directory (AD) servers are prone to incorrectly setting the Windows Firewall to the domain profile. This script, designed to be copy-pasted into an elevated terminal window during the deployment of an AD server, creates a test-and-fix script and configures the machine's Task Scheduler to call this new script every minute. Its purpose is to restore the domain firewall profile by disabling and re-enabling the network interface card (NIC) if necessary.
+Server 2025 Active Directory (AD) servers are prone to incorrectly setting the Windows Firewall to the domain profile. This script, designed to be copy-pasted into an elevated terminal window during the deployment of an AD server, creates a test-and-fix script and configures the machine's Task Scheduler to call this new script every minute, for five minutes. Its purpose is to restore the domain firewall profile by disabling and re-enabling the network interface card (NIC) if necessary.
 
 This solution operates independently of Group Policy or similar configurations, providing a simple and effective mechanism to manage network adapters in scenarios where domain authentication is required.
 
